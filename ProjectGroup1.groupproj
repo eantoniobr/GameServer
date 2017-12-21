@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6214556C-CC5C-4BAB-8494-02A1536D2CA9}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Project1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\..\Downloads\BCEditor-master\BCEditor-master\Packages\BCEditor.Delphi.XE8.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Project1">
+        <MSBuild Projects="Project1.dproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="Project1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="Project1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BCEditor_Delphi_XE8">
+        <MSBuild Projects="..\..\..\Downloads\BCEditor-master\BCEditor-master\Packages\BCEditor.Delphi.XE8.dproj"/>
+    </Target>
+    <Target Name="BCEditor_Delphi_XE8:Clean">
+        <MSBuild Projects="..\..\..\Downloads\BCEditor-master\BCEditor-master\Packages\BCEditor.Delphi.XE8.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BCEditor_Delphi_XE8:Make">
+        <MSBuild Projects="..\..\..\Downloads\BCEditor-master\BCEditor-master\Packages\BCEditor.Delphi.XE8.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Project1;BCEditor_Delphi_XE8"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Project1:Clean;BCEditor_Delphi_XE8:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Project1:Make;BCEditor_Delphi_XE8:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
